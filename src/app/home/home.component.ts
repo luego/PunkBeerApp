@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BeerModel } from '../models/beer-model';
+import { PunkbeerapiService } from '../services/punkbeerapi.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  beers$: Observable<BeerModel[]>;
 
-  constructor() { }
+  constructor(private http: PunkbeerapiService) {}
 
   ngOnInit() {
+    this.getBeers();
   }
-
+  getBeers(): any {
+    this.beers$ = this.http.getBeers();
+  }
 }
