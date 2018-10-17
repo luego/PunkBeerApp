@@ -16,6 +16,8 @@ import { BeersComponent } from './components/beers/beers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './components/messages/messages.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FavouritesComponent } from './favourites/favourites.component';
+
 library.add(fas);
 
 @NgModule({
@@ -24,7 +26,8 @@ library.add(fas);
     HomeComponent,
     BeersComponent,
     MessagesComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

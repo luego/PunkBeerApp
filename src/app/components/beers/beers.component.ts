@@ -18,6 +18,6 @@ export class BeersComponent implements OnInit {
 
   setFavorite(beer: BeerModel) {
     beer.favorite = !beer.favorite;
-    this.localService.saveValue(beer.id.toString(), beer.favorite);
+    this.localService.setValue(beer.id, beer.favorite);
   }
 }

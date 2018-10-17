@@ -3,15 +3,15 @@ import { Observable } from 'rxjs';
 import { BeerModel } from '../models/beer-model';
 import { PunkbeerapiService } from '../services/punkbeerapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { tap, map } from 'rxjs/operators';
 import { LocalService } from '../services/local.service';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-favourites',
+  templateUrl: './favourites.component.html',
+  styleUrls: ['./favourites.component.css']
 })
-export class HomeComponent implements OnInit {
+export class FavouritesComponent implements OnInit {
   beers$: Observable<BeerModel[]>;
 
   constructor(
@@ -21,12 +21,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getBeers();
+    this.getFavourites();
   }
 
-  getBeers(): any {
+  getFavourites() {
     this.spinner.show();
-    this.beers$ = this.http.getBeers().pipe(
+    const localIds = this.localService.getAll().filter(x => x.value === true);
+    const ids = localIds.map(x => x.id);
+
+    this.beers$ = this.http.getBeersByIds(ids).pipe(
       tap(x => this.spinner.hide()),
       map(this.setFavorites())
     );
@@ -38,17 +41,5 @@ export class HomeComponent implements OnInit {
         y.favorite = this.localService.getValue(y.id);
         return y;
       });
-  }
-
-  doSearch(value: string) {
-    if (value === '') {
-      this.getBeers();
-    } else {
-      this.spinner.show();
-      this.beers$ = this.http.search(value).pipe(
-        tap(x => this.spinner.hide()),
-        map(this.setFavorites())
-      );
-    }
   }
 }

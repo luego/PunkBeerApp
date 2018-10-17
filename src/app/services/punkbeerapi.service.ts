@@ -46,7 +46,7 @@ export class PunkbeerapiService {
   getBeersRandom(): Observable<Array<BeerModel>> {
     return this.httpClient
       .get<Array<BeerModel>>(`${this.api}/random`)
-      .pipe(catchError(this.handleError<Array<BeerModel>>('getBeers')));
+      .pipe(catchError(this.handleError<Array<BeerModel>>('getBeersRandom')));
   }
 
   /**
@@ -58,7 +58,19 @@ export class PunkbeerapiService {
     params = params.append('beer_name', value);
     return this.httpClient
       .get<Array<BeerModel>>(this.api, { params: params })
-      .pipe(catchError(this.handleError<Array<BeerModel>>('getBeers')));
+      .pipe(catchError(this.handleError<Array<BeerModel>>('search')));
+  }
+
+  /**
+   * Get all beers
+   */
+  getBeersByIds(ids: Array<number>): Observable<BeerModel[]> {
+    let params = new HttpParams();
+    params = params.append('ids', ids.join('|'));
+
+    return this.httpClient
+      .get<BeerModel[]>(this.api, { params: params })
+      .pipe(catchError(this.handleError<BeerModel[]>('getBeersByIds')));
   }
 
   /**
