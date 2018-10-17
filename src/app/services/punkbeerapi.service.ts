@@ -49,6 +49,14 @@ export class PunkbeerapiService {
       .pipe(catchError(this.handleError<Array<BeerModel>>('getBeers')));
   }
 
+  search(value: string): Observable<Array<BeerModel>> {
+    let params = new HttpParams();
+    params = params.append('beer_name', value);
+    return this.httpClient
+      .get<Array<BeerModel>>(this.api, { params: params })
+      .pipe(catchError(this.handleError<Array<BeerModel>>('getBeers')));
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

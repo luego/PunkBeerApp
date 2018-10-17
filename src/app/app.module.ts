@@ -8,20 +8,29 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { UiModule } from './ui/ui.module';
 import { HomeComponent } from './home/home.component';
 import { BeersComponent } from './components/beers/beers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MessagesComponent } from './components/messages/messages.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 library.add(fas);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, BeersComponent, MessagesComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    BeersComponent,
+    MessagesComponent,
+    SearchBarComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    NgxSpinnerModule,
     UiModule
   ],
   providers: [],

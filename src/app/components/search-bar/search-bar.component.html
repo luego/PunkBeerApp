@@ -1,0 +1,18 @@
+<div id="flow">
+  <span class="flow-1"></span>
+  <span class="flow-2"></span>
+  <span class="flow-3"></span>
+</div>
+<div class="section">
+  <div class="box">
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input #box class="input has-text-centered" type="search" placeholder="» » » » » » find me « « « « « «"
+          (keyup.enter)="onEnter(box.value)">
+      </div>
+      <div class="control">
+        <button class="button is-info" (click)="onEnter(box.value)">Search</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,16 +8,12 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 library.add(fas);
 
 @NgModule({
-  imports: [RouterModule, CommonModule, FontAwesomeModule],
-  declarations: [
-    LayoutComponent,
-    HeaderComponent,
-    FooterComponent
-  ],
+  imports: [RouterModule, CommonModule, FontAwesomeModule, NgxSpinnerModule],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent],
   exports: [LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
