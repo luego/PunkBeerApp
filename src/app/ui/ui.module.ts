@@ -13,7 +13,11 @@ library.add(fas);
 
 @NgModule({
   imports: [RouterModule, CommonModule, FontAwesomeModule],
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    LayoutComponent,
+    HeaderComponent,
+    FooterComponent
+  ],
   exports: [LayoutComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

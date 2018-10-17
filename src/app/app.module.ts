@@ -12,10 +12,11 @@ import { UiModule } from './ui/ui.module';
 import { HomeComponent } from './home/home.component';
 import { BeersComponent } from './components/beers/beers.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesComponent } from './components/messages/messages.component';
 library.add(fas);
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, BeersComponent],
+  declarations: [AppComponent, HomeComponent, BeersComponent, MessagesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

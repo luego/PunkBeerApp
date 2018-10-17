@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { BeerModel } from '../models/beer-model';
 import { Observable, of } from 'rxjs';
 import { ErrorModel } from '../models/error-model';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { ErrorModel } from '../models/error-model';
 export class PunkbeerapiService {
   private api = 'https://api.punkapi.com/v2/beers';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private messageService: MessageService
+  ) {}
 
   /**
    * Get all beers
@@ -66,6 +70,6 @@ export class PunkbeerapiService {
 
   /** Log a message with the MessageService */
   private log(message: string) {
-    // this.messageService.add(`GiphyapiService: ${message}`);
+    this.messageService.add(`PunkbeerapiService: ${message}`);
   }
 }
