@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { Ng2Webstorage } from 'ngx-webstorage';
 import { UiModule } from './ui/ui.module';
 import { HomeComponent } from './home/home.component';
 import { BeersComponent } from './components/beers/beers.component';
@@ -31,6 +32,7 @@ library.add(fas);
     HttpClientModule,
     FontAwesomeModule,
     NgxSpinnerModule,
+    Ng2Webstorage,
     UiModule
   ],
   providers: [],

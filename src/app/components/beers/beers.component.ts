@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PunkbeerapiService } from '../../services/punkbeerapi.service';
 import { Observable } from 'rxjs';
 import { BeerModel } from '../../models/beer-model';
+import { LocalService } from '../../services/local.service';
 
 @Component({
   selector: 'app-beers',
@@ -12,7 +12,12 @@ export class BeersComponent implements OnInit {
   @Input()
   beers: Observable<BeerModel[]>;
 
-  constructor(private http: PunkbeerapiService) {}
+  constructor(private localService: LocalService) {}
 
   ngOnInit() {}
+
+  setFavorite(beer: BeerModel) {
+    beer.favorite = !beer.favorite;
+    this.localService.saveValue(beer.id.toString(), beer.favorite);
+  }
 }

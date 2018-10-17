@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { BeerModel } from '../models/beer-model';
 import { PunkbeerapiService } from '../services/punkbeerapi.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
+import { LocalService } from '../services/local.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private http: PunkbeerapiService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private localService: LocalService
   ) {}
 
   ngOnInit() {
@@ -24,7 +26,18 @@ export class HomeComponent implements OnInit {
 
   getBeers(): any {
     this.spinner.show();
-    this.beers$ = this.http.getBeers().pipe(tap(x => this.spinner.hide()));
+    this.beers$ = this.http.getBeers().pipe(
+      tap(x => this.spinner.hide()),
+      map(this.setFavorites())
+    );
+  }
+
+  private setFavorites(): (value: BeerModel[], index: number) => BeerModel[] {
+    return (x: BeerModel[]) =>
+      x.map((y: BeerModel) => {
+        y.favorite = this.localService.retrieveValue(y.id.toString());
+        return y;
+      });
   }
 
   doSearch(value: string) {
@@ -32,7 +45,10 @@ export class HomeComponent implements OnInit {
       this.getBeers();
     } else {
       this.spinner.show();
-      this.beers$ = this.http.search(value).pipe(tap(x => this.spinner.hide()));
+      this.beers$ = this.http.search(value).pipe(
+        tap(x => this.spinner.hide()),
+        map(this.setFavorites())
+      );
     }
   }
 }

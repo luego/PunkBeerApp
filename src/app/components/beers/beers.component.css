@@ -45,3 +45,14 @@ section {
   /* bg color = bg color under block */
   background: white;
 }
+
+
+.fa-heart.active {
+  color: deeppink;
+}
+
+
+.icons i,
+.icons svg {
+  color: deeppink;
+}

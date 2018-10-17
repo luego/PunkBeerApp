@@ -49,6 +49,10 @@ export class PunkbeerapiService {
       .pipe(catchError(this.handleError<Array<BeerModel>>('getBeers')));
   }
 
+  /**
+   * Get all beers by name
+   * @param value beer name
+   */
   search(value: string): Observable<Array<BeerModel>> {
     let params = new HttpParams();
     params = params.append('beer_name', value);

@@ -22,6 +22,7 @@ export interface BeerModel {
   food_pairing: string[];
   brewers_tips: string;
   contributed_by: string;
+  favorite: boolean;
 }
 
 export interface BoilVolume {
