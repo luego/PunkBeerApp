@@ -1,0 +1,24 @@
+<div class="card" *ngIf="beer">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{ beer.name }}
+    </p>
+  </header>
+  <div class="card-image">
+    <figure class="image  is-square">
+      <img [src]="beer.image_url" alt="Image">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="content">
+      {{ beer.description }}
+      <br>
+      <time>{{beer.first_brewed}}</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
+</div>

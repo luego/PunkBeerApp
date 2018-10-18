@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { BeerModel } from '../models/beer-model';
 import { Observable, of } from 'rxjs';
 import { ErrorModel } from '../models/error-model';
@@ -35,9 +35,10 @@ export class PunkbeerapiService {
    * @param id number
    */
   getById(id: number): Observable<BeerModel> {
-    return this.httpClient
-      .get<BeerModel>(`${this.api}/${id}`)
-      .pipe(catchError(this.handleError<BeerModel>('getById')));
+    return this.httpClient.get<BeerModel>(`${this.api}/${id}`).pipe(
+      map(x => x[0]),
+      catchError(this.handleError<BeerModel>('getById'))
+    );
   }
 
   /**

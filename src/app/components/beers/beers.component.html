@@ -12,12 +12,13 @@
               </div>
               <div class="media-content">
                 <div class="content">
-                  <strong>{{beer.name}}</strong>
+                  <a class="green-anchor" [routerLink]="['/beer', beer.id]">
+                    <strong>{{beer.name}}</strong>
+                  </a>
                   <p class="block-with-text">
                     {{ beer.description }}
                   </p>
                 </div>
-
               </div>
             </article>
             <nav class="level is-mobile">
