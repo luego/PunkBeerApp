@@ -1,0 +1,54 @@
+---
+import type { BeerModel } from '../models/BeerModel';
+
+const response = await fetch(
+  'https://api.punkapi.com/v2/beers?brewed_before=11-2012&abv_gt=6'
+);
+const beers = (await response.json()) as BeerModel[];
+---
+
+<section class='text-gray-600 body-font'>
+  <div class='container px-5 py-24 mx-auto'>
+    <div class='flex flex-wrap -m-4'>
+      {
+        beers.map((beer) => (
+          <div class='xl:w-1/4 md:w-1/2 p-4'>
+            <div class='bg-gray-100 p-6 rounded-lg'>
+              <img
+                class='h-64 rounded w-64 object-contain object-center mb-6'
+                src={beer.image_url}
+                alt='content'
+              />
+              <h3 class='tracking-widest text-indigo-500 text-xs font-medium title-font'>
+                {beer.first_brewed}
+              </h3>
+              <h2 class='text-lg text-gray-900 font-medium title-font mb-4'>
+                {beer.name}
+              </h2>
+              <p class='max-h-24 text-ellipsis overflow-hidden ...'>
+                {beer.description}
+              </p>
+              <a
+                class='text-indigo-500 inline-flex items-center'
+                href={'/beers/' + beer.id}
+              >
+                Learn More
+                <svg
+                  fill='none'
+                  stroke='currentColor'
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  stroke-width='2'
+                  class='w-4 h-4 ml-2'
+                  viewBox='0 0 24 24'
+                >
+                  <path d='M5 12h14M12 5l7 7-7 7' />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
